@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷速 · 稳定入口与页面说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f2f2;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            color: #2c3e50;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .page-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* 博客头部 */
+        .blog-header {
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .blog-header h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #1e2a36;
+            margin-bottom: 12px;
+        }
+
+        .blog-header .sub {
+            font-size: 1rem;
+            color: #5f6b7a;
+            border-bottom: 1px solid #d8dde3;
+            padding-bottom: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6eaef;
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 文章内部 */
+        .article-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1f2a36;
+        }
+
+        .article-lede {
+            font-size: 1.05rem;
+            color: #4a5666;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed #dce2e9;
+        }
+
+        .article-body p {
+            margin-bottom: 1.2em;
+            font-size: 1rem;
+        }
+
+        .article-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用块 */
+        .block-quote {
+            background: #f7f9fc;
+            border-left: 4px solid #7b8a9b;
+            padding: 18px 24px;
+            margin: 24px 0;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            color: #3a4656;
+            font-style: normal;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+        }
+
+        .block-quote strong {
+            color: #1f2a36;
+            font-weight: 500;
+        }
+
+        /* 特点小列表（卡片内嵌） */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 28px;
+            margin: 20px 0 8px;
+        }
+
+        .feature-item {
+            flex: 1 1 180px;
+            padding: 6px 0;
+        }
+
+        .feature-item .label {
+            font-weight: 500;
+            color: #1f2a36;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .feature-item .desc {
+            font-size: 0.9rem;
+            color: #566373;
+        }
+
+        /* 访问句 / 提示行 */
+        .visit-line {
+            margin-top: 28px;
+            padding: 20px 0 6px;
+            border-top: 1px solid #e0e5ec;
+            font-size: 0.98rem;
+            color: #3b4859;
+        }
+
+        .visit-line a {
+            color: #2b4f6e;
+            text-decoration: none;
+            border-bottom: 1px dotted #9aacbf;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .visit-line a:hover {
+            color: #162b3b;
+            border-bottom: 1px solid #162b3b;
+        }
+
+        /* FAQ摘要卡片 */
+        .faq-preview {
+            background: #fafbfd;
+            border-radius: 14px;
+            padding: 20px 28px;
+            border: 1px solid #e1e6ed;
+        }
+
+        .faq-preview h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 14px;
+            color: #1d2938;
+        }
+
+        .faq-preview .qa {
+            margin-bottom: 12px;
+        }
+
+        .faq-preview .qa:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-preview .q {
+            font-weight: 500;
+            color: #2b4055;
+        }
+
+        .faq-preview .a {
+            color: #4a5b6e;
+            font-size: 0.95rem;
+            padding-left: 4px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 24px 14px;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+
+            .blog-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .feature-grid {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .feature-item {
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .blog-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 18px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- 博客标题区 -->
+    <header class="blog-header">
+        <h1>雷速 · 从一处稳定的入口开始</h1>
+        <div class="sub">关于页面定位、访问习惯与内容边界的随记</div>
+    </header>
+
+    <!-- 主要文章卡片 -->
+    <article class="card">
+        <h2 class="article-title">不只是链接，更是一个可靠的起点</h2>
+        <div class="article-lede">
+            对经常使用的人来说，一个简洁、直达的入口往往比繁复的导航更值得依赖。<br>
+            这篇文章想聊聊页面本身——作为信息容器，我们如何理解它的角色。
+        </div>
+
+        <div class="article-body">
+            <p>
+                在互联网的日常里，我们每天都会打开许多页面。有的页面承载工具，有的页面承载资讯，还有的页面仅仅是一个入口——它不喧哗，却始终在那里。<strong><a href="https://leisu-website-sport.com">雷速</a></strong>给很多人的第一印象，恰恰是这种稳定的存在感。没有多余的修饰，没有频繁的弹窗，打开就是预期中的内容。
+            </p>
+            <p>
+                从用户的角度看，一个页面的价值往往体现在两个层面：一是它能否快速响应用户的需求，二是它是否保持一致的体验。后者尤其重要，因为习惯的养成需要稳定的环境。如果每次访问都要重新适应布局或逻辑，信任感就会慢慢磨损。
+            </p>
+
+            <!-- 引用提示 -->
+            <div class="block-quote">
+                <strong>提示：</strong> 页面的设计不是为了让用户停留更久，而是为了让用户以最低的认知成本完成他们想做的事。——这是很多优质页面共有的特质，也适用于我们日常所依赖的许多站点。
+            </div>
+
+            <p>
+                回想一下，当你需要快速获取信息或完成某个操作时，你通常会打开哪个页面？那个页面往往具备几个特征：加载迅速、结构清晰、没有干扰。这些特征听起来简单，但在实际的产品迭代中，保持这种“简单”反而需要持续的克制。<a href="https://leisu-website-sport.com">雷速</a>在这方面做得比较自然，它没有试图承载太多功能，而是专注于提供一个干净的起点。
+            </p>
+            <p>
+                当然，“稳定入口”并不意味着页面静止不变。合理的更新和优化是必要的，但变化应该渐进，并且尊重用户的已有习惯。比如调整字体大小、优化卡片间距、细化分类标签——这些细节的打磨往往不会引起注意，但使用时的舒适感就来自这些看不见的调整。
+            </p>
+        </div>
+
+        <!-- 特点卡片（内嵌小网格） -->
+        <div style="margin: 24px 0 8px;">
+            <div style="font-weight: 500; color: #1f2a36; margin-bottom: 10px;">页面设计里几个值得留意的细节</div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="label">加载优先级</span>
+                    <span class="desc">关键内容先渲染，次要资源延迟，减少首屏等待</span>
+                </div>
+                <div class="feature-item">
+                    <span class="label">导航层次</span>
+                    <span class="desc">不超过两层，避免用户迷失在子页面中</span>
+                </div>
+                <div class="feature-item">
+                    <span class="label">反馈明确</span>
+                    <span class="desc">每个可点击区域都有清晰的状态变化，减少误操作</span>
+                </div>
+                <div class="feature-item">
+                    <span class="label">文字可读</span>
+                    <span class="desc">行高 1.7，字间距适中，背景与前景对比柔和</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 嵌入句子中的链接：自然提及 -->
+        <div class="visit-line">
+            <span>如果你还没有使用过，不妨从</span>
+            <a href="https://leisu-website-sport.com">雷速</a>
+            <span>开始，感受一下页面本身的设计逻辑。它不负责解释一切，但至少提供一个不费力的起点。</span>
+        </div>
+    </article>
+
+    <!-- FAQ 摘要卡片（非完整，只作为提示） -->
+    <div class="card faq-preview">
+        <h3>一些常见疑问的简短回应</h3>
+        <div class="qa">
+            <div class="q">—— 页面会频繁改变布局吗？</div>
+            <div class="a">很少。核心结构保持稳定，优化集中在加载速度和内容排版上。</div>
+        </div>
+        <div class="qa">
+            <div class="q">—— 是否需要在多个设备上分别适应？</div>
+            <div class="a">页面本身采用响应式设计，桌面与移动端阅读体验基本一致。</div>
+        </div>
+        <div class="qa">
+            <div class="q">—— 是否存在多余的广告或跳转？</div>
+            <div class="a">没有。内容导向是页面的原则，外部链接均明确标注。</div>
+        </div>
+        <div style="font-size: 0.88rem; color: #64748b; margin-top: 14px; border-top: 1px solid #e2e8f0; padding-top: 14px;">
+            * 以上回应基于页面当前的公开表现，具体以实际体验为准。
+        </div>
+    </div>
+
+    <!-- 页脚提示（非链接） -->
+    <div style="text-align: center; margin-top: 36px; font-size: 0.85rem; color: #7b8a9b; border-top: 1px solid #dce1e8; padding-top: 22px;">
+        <span>一篇关于页面入口与设计边界的记录 · 内容保持克制与真实</span>
+    </div>
+</div>
+</body>
+</html>
